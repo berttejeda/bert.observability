@@ -9,7 +9,7 @@ Mermaid's `architecture-beta` syntax currently has limited support for inline st
 ## Files
 - `diagram.mmd`: The base Mermaid architecture diagram file.
 - `generate.sh`: A shell script that reads the base diagram, runs conditions (like `curl`), dynamically injects a `%%{init}%%` JSON block with CSS targeting the failed nodes, and generates the final output image.
-- `diagram-result.png`: An example output where the some diagram nodes are styled based on a fail condition, resulting in a red border around the affected node.
+- `diagram-styled.png`: An example output where the some diagram nodes are styled based on a fail condition, resulting in a red border around the affected node.
 
 ## Prerequisites
 - [Mermaid CLI (`mmdc`)](https://github.com/mermaid-js/mermaid-cli) installed and available in your `$PATH`.
@@ -40,6 +40,7 @@ If you want to view the intermediate Mermaid file (`diagram_temp.mmd`) that cont
 4. The script iterates over `error_nodes` and constructs a valid JSON CSS block.
 5. `awk` is used to safely prepend the constructed CSS block to the top of `diagram_temp.mmd` as a Mermaid `%%{init}%%` directive. 
 6. `mmdc` renders the temporary file into the final PNG (`diagram-w-error.png`).
+    - e.g. ![Diagram result](diagram-styled.png "Diagram result")
 7. The temporary file is cleaned up.
 
 ### Adding New Conditions
